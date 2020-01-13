@@ -1,4 +1,4 @@
-DATABASE_URI = 'postgres+psycopg2://postgres:password@localhost:5432/postgres'
+DATABASE_URL = 'postgres+psycopg2://postgres:password@localhost:5432/postgres'
 from sqlalchemy import create_engine
 engine = create_engine(DATABASE_URI)
 from BHmodel import *
