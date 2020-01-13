@@ -1,1 +1,1 @@
-web: gunicorn boreholelocations:app
+web: gunicorn borehole:boreholelocations
