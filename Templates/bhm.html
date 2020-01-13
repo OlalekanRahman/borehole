@@ -1,0 +1,123 @@
+<!DOCTYPE "html">
+<html lang="en">
+ <head>
+<script type="text/javascript"src="https://maps.googleapis.com/maps/api/js">
+</script>
+<script type="text/javascript"
+ src="https://maps.googleapis.com/maps/api/js">
+</script>
+<script type="text/javascript">
+ var map;
+ var marker;
+ function initialize() {
+ var mapOptions = {center: new google.maps.LatLng(-33.30578381949298,26.523442268371582),zoom: 15
+ };
+ map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+ google.maps.event.addListener(map, 'click',function(event){
+ placeMarker(event.latLng);
+ });
+ }
+ function placeMarker(location) {
+ if (marker) {
+ marker.setPosition(location);
+ } else {
+ marker = new google.maps.Marker({
+ position: location,
+ map: map
+ });
+ }
+ }
+</script>
+        
+ <style>
+             
+@keyframes move {
+        0% {
+              left: 0%;
+          }
+        50% {
+              left: 50%;
+          }
+          100% {
+              left: 0%;
+          }
+      }
+
+      h1 {
+          position: relative;
+          animation-name: move;
+          animation-duration: 5s;
+          animation-fill-mode: forwards;
+          animation-iteration-count: infinite;
+          color:blue;text-shadow:7px 5px white;
+          text-decoration-style:block;
+      }
+         span{color:blue;text-decoration-line:block; direction: rt1;}
+         h2 {color:purple;}
+    
+body {
+ font-family: sans-serif;
+ background: #eee;
+}
+input, select, textarea {
+ display: block;
+ color: grey;
+ border: 1px solid lightsteelblue;
+ line-height: 15px;
+ margin: 2px 6px 16px 0px;
+ width: 25%;
+}
+#submit{
+ padding: 5px 10px 5px 10px;
+ color: black;
+ background: lightsteelblue;
+ border: none;
+ box-shadow: 1px 1px 1px #4C6E91;
+}
+#submit:hover {
+ background: steelblue;
+}
+#map-canvas {
+ width: 70%;
+ height: 500px;
+ float: left;
+   margin:8px;
+}
+#newcrimeform {
+ float: right;
+ width: 25%;
+     }
+ #ph {position:absolute;visibility:visible;top:520px;right:60px;z-index:100;}
+     #submit {position:absolute;visibility:visible;top:450px;right:180px;z-index:100;}
+</style>
+</head>
+<body onload="initialize()">
+<h1 contenteditable data-heading= "Well map"> Iseyin Borehole Wells Map Project</h1>
+<div id="ph">
+<img src="https://www.h2oforlifeschools.org/page/borehole-well" alt="borehole pic" height=100px width=300px>
+    </div>
+<p>Click on the map to submit location of a <span>Borehole Well !</span></p>
+ <div id="map-canvas">
+ </div>
+ <div id="newboreholeform">
+ <h2>Submit new <span>Borehole well</span></h2>
+ <form  action="/submitwell" method="POST">
+ <label for="category">Category</label>
+ <select class='f' name="category" id="category">
+ {% for category in categories %}
+ <option value="{{category}}">{{category}}</option>
+ {% endfor %}
+</select>
+ <label for="date">Date of submission</label>
+ <input class='f' name="date" id="date" type="text" readonly>
+ <label for="latitude">Latitude</label>
+ <input class='f' name="latitude" id="latitude"type="text" readonly>
+ <label for="longitude">Longitude</label>
+ <input class='f' name="longitude" id="longitude" type="text" readonly>
+ <label for="address">Detailed Address of the Borehole Well</label>
+ <textarea class='f' name="address" id="address" placeholder="A brief but detailed address of the Borehole well."></textarea>
+ <button class='f' id="submit">Submit</button>
+ </form>
+ </div>
+</body>
+</html>
