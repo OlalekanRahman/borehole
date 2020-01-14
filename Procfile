@@ -1,1 +1,1 @@
-web: gunicorn borehole.py:boreholesiniseyin
+web: gunicorn borehole.py:boreholemap
