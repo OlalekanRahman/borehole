@@ -1,4 +1,4 @@
-DATABASE_URL = 'postgres+psycopg2://postgres:password@localhost:5432/postgres'
+DATABASE_URI = 'postgres+psycopg2://postgres:password@localhost:5432/postgres'
 from sqlalchemy import create_engine
 engine = create_engine(DATABASE_URI)
 from BHmodel import *
@@ -14,7 +14,7 @@ def sanitize_string(userinput):
     s=list(filter(lambda x: x in whitelist, userinput))
     s=''.join(s)
     if s == '':
-        return 'No address attached'
+        return map_()
     return s
 def get_data(w):
     BHwells=[]

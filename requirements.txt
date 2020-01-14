@@ -1,3 +1,2 @@
-uwsg
 flask
-SQLAlchemy
+sqlalchemy

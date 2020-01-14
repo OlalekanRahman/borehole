@@ -1,35 +1,42 @@
 <!DOCTYPE "html">
 <html lang="en">
  <head>
-<script type="text/javascript"src="https://maps.googleapis.com/maps/api/js">
-</script>
-<script type="text/javascript"
- src="https://maps.googleapis.com/maps/api/js">
+ <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDmc4dW-ej_FdVpI9ErKvxfBjXCvSyH1dc=false&extension=.js'>
 </script>
 <script type="text/javascript">
  var map;
  var marker;
  function initialize() {
- var mapOptions = {center: new google.maps.LatLng(-33.30578381949298,26.523442268371582),zoom: 15
- };
+ var mapOptions = {
+ center: new google.maps.LatLng(7.9695,3.5966),zoom: 15};
  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
- google.maps.event.addListener(map, 'click',function(event){
- placeMarker(event.latLng);
- });
+ google.maps.event.addListener(map, 'click',function(event){ placeMarker(event.latLng);});
  }
  function placeMarker(location) {
  if (marker) {
  marker.setPosition(location);
  } else {
- marker = new google.maps.Marker({
- position: location,
- map: map
- });
+ marker = new google.maps.Marker({position: location,map: map});
  }
+ document.getElementById('latitude').value = location.lat();
+ document.getElementById('longitude').value = location.lng();
+ date=new Date();
+  document.getElementById('date').value =date;  
  }
+    document.addEventListener('DOMContentLoaded', ()=>{
+         document.querySelector('#submit').disabled=true;
+         document.querySelector('#address').onkeyup=function(){
+             var d=document.querySelector('#address').value;
+             if (d != null)
+                  document.querySelector('#submit').disabled=false;
+             else{
+         document.querySelector('#submit').disable=true};}
+        document.querySelector('#submit').onsubmit=()=>{
+            
+          document.querySelector('#address').value ='';} 
+         })
 </script>
-        
- <style>
+       <style>
              
 @keyframes move {
         0% {
@@ -46,13 +53,13 @@
       h1 {
           position: relative;
           animation-name: move;
-          animation-duration: 5s;
+          animation-duration: 4s;
           animation-fill-mode: forwards;
           animation-iteration-count: infinite;
           color:blue;text-shadow:7px 5px white;
           text-decoration-style:block;
       }
-         span{color:blue;text-decoration-line:block; direction: rt1;}
+         span{color:blue}
          h2 {color:purple;}
     
 body {
@@ -65,7 +72,7 @@ input, select, textarea {
  border: 1px solid lightsteelblue;
  line-height: 15px;
  margin: 2px 6px 16px 0px;
- width: 25%;
+ width: 65%;
 }
 #submit{
  padding: 5px 10px 5px 10px;
@@ -79,26 +86,24 @@ input, select, textarea {
 }
 #map-canvas {
  width: 70%;
- height: 500px;
+ height: 550px;
  float: left;
-   margin:8px;
 }
-#newcrimeform {
+#newboreholeform {
  float: right;
  width: 25%;
      }
  #ph {position:absolute;visibility:visible;top:520px;right:60px;z-index:100;}
-     #submit {position:absolute;visibility:visible;top:450px;right:180px;z-index:100;}
+     #submit {position:absolute;visibility:visible;top:470px;right:200px;z-index:100;}
 </style>
 </head>
 <body onload="initialize()">
-<h1 contenteditable data-heading= "Well map"> Iseyin Borehole Wells Map Project</h1>
+<h1 contenteditable data-heading= "Well map">Iseyin Borehole Wells Map Project</h1>
 <div id="ph">
-<img src="https://www.h2oforlifeschools.org/page/borehole-well" alt="borehole pic" height=100px width=300px>
+<img src="https://www.h2oforlifeschools.org/page/borehole-well" alt="borehole pic" height=130px width=300px>
     </div>
 <p>Click on the map to submit location of a <span>Borehole Well !</span></p>
- <div id="map-canvas">
- </div>
+ <div id="map-canvas"></div>
  <div id="newboreholeform">
  <h2>Submit new <span>Borehole well</span></h2>
  <form  action="/submitwell" method="POST">
