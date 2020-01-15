@@ -11,17 +11,25 @@
  center: new google.maps.LatLng(7.9695,3.5966),zoom: 15};
  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
  google.maps.event.addListener(map, 'click',function(event){ placeMarker(event.latLng);});
+ placeWells({{wells | safe}});
  }
+ function placeWells(wells){
+ for (i=0; i<wells.length; i++){
+ well = new google.maps.Marker( {
+ position: new google.maps.LatLng(wells[i].lat,wells[i].long), map: map,title: wells[i].category + "\n" + wells[i].addr}
+ );
+ }
+}
  function placeMarker(location) {
  if (marker) {
  marker.setPosition(location);
  } else {
- marker = new google.maps.Marker({position: location,map: map});
+ marker = new google.maps.Marker({position:location,map: map});
  }
- document.getElementById('latitude').value = location.lat();
- document.getElementById('longitude').value = location.lng();
- date=new Date();
-  document.getElementById('date').value =date;  
+document.getElementById('latitude').value = location.lat();
+document.getElementById('longitude').value = location.lng();
+date=new Date();
+document.getElementById('date').value =date;
  }
     document.addEventListener('DOMContentLoaded', ()=>{
          document.querySelector('#submit').disabled=true;
@@ -72,7 +80,7 @@ input, select, textarea {
  border: 1px solid lightsteelblue;
  line-height: 15px;
  margin: 2px 6px 16px 0px;
- width: 65%;
+ width: 80%;
 }
 #submit{
  padding: 5px 10px 5px 10px;
@@ -94,13 +102,13 @@ input, select, textarea {
  width: 25%;
      }
  #ph {position:absolute;visibility:visible;top:520px;right:60px;z-index:100;}
-     #submit {position:absolute;visibility:visible;top:470px;right:200px;z-index:100;}
+     #submit {position:absolute;visibility:visible;top:470px;right:180px;z-index:100;}
 </style>
 </head>
 <body onload="initialize()">
 <h1 contenteditable data-heading= "Well map">Iseyin Borehole Wells Map Project</h1>
 <div id="ph">
-<img src="https://www.h2oforlifeschools.org/page/borehole-well" alt="borehole pic" height=130px width=300px>
+<img src="signature.JPG" alt="borehole pic" height=130px width=300px>
     </div>
 <p>Click on the map to submit location of a <span>Borehole Well !</span></p>
  <div id="map-canvas"></div>

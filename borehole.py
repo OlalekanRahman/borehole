@@ -19,7 +19,7 @@ def sanitize_string(userinput):
 def get_data(w):
     BHwells=[]
     for i in w:
-        BHwells.append({"category":i.category,"Address":i.addr})
+        BHwells.append({"lat":i.lat,"long":i.long,"category":i.category,Address":i.addr})
     return json.dumps(BHwells)
 @app1.route('/')
 def map_():
