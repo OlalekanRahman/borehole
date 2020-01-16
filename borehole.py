@@ -1,4 +1,4 @@
-DATABASE_URL = postgres://password@ec2-174-129-33-97.compute-1.amazonaws.com:5432/d8c1fqaf42om9j
+DATABASE_URL = postgres://avuxcejqkjsunr:d71b5338f3faabf30b9d1944c446b9b1b8679fdce31c2680b858da1b2616cda4@ec2-23-21-13-88.compute-1.amazonaws.com:5432/ddjjg03jcsftac
 from sqlalchemy import create_engine
 engine = create_engine(DATABASE_URL)
 from BHmodel import *
